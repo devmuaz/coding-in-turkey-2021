@@ -1,0 +1,55 @@
+<html>
+  <body>
+    <h2>Fridge Items</h2>
+    <table>
+      <thead>
+        <td>
+          <b>Item</b>
+        </td>
+        <td>
+          <b>Count</b>
+        </td>
+        <td>
+          <b>Remove</b>
+        </td>
+      </thead>
+      <tbody id="items"></tbody>
+    </table>
+    <br />
+    <input id="textbox" type="text" />
+    <button onClick="add(event)">Add</button>
+  </body>
+  <script>
+    function add(event) {
+      event.preventDefault();
+      var textbox = document.getElementById("textbox");
+      var items = document.getElementById("items");
+      var parse = textbox.value.split(",");
+      var title = parse[0];
+      var count = parse[1];
+      items.innerHTML +=
+        `<tr id="` +
+        title.toLowerCase() +
+        `">
+          <td>` +
+        title +
+        `</td>
+          <td>` +
+        count +
+        `</td>
+          <td><button id="` +
+        title.toLowerCase() +
+        `" onClick="remove(this.id)">X</button></td>
+        </tr>`;
+      textbox.value = "";
+    }
+    function remove(id) {
+      document.getElementById(id).style.display = "none";
+    }
+  </script>
+  <style>
+    td {
+      padding-right: 50px;
+    }
+  </style>
+</html>
